@@ -26,9 +26,9 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Setup dotnet
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 6.0.x
           include-prerelease: true
 
       - name: Build
@@ -37,7 +37,7 @@ jobs:
           tag=$(git describe --tags --abbrev=0)
           release_name="MangaDexCommentNotifier-$tag-${{ matrix.target }}"
           # Build everything
-          dotnet publish MangaDexCommentNotifier/MangaDexCommentNotifier.csproj --framework netcoreapp7.0 --runtime "${{ matrix.target }}" -c Release -o "$release_name"
+          dotnet publish MangaDexCommentNotifier/MangaDexCommentNotifier.csproj --framework netcoreapp6.0 --runtime "${{ matrix.target }}" -c Release -o "$release_name"
           # Pack files
           if [ "${{ matrix.target }}" == "win-x64" ]; then
             # Pack to zip for Windows
