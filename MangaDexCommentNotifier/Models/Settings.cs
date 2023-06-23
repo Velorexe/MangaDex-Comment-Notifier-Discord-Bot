@@ -10,7 +10,7 @@
         public byte ScanTimeoutInMinutes { get; set; } = 30;
         public byte InbetweenTimeoutInSeconds { get; set; } = 5;
 
-        public string DiscordBotToken = string.Empty;
+        public string DiscordBotToken { get; set; } = string.Empty;
     }
 
     internal struct ForumEntry

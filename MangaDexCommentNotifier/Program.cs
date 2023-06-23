@@ -53,6 +53,12 @@ namespace MangaDexCommentNotifier
                 .AddSingleton<IMangaDexForumService>((_) => new MangaDexForumService())
                 .BuildServiceProvider();
 
+            if (string.IsNullOrEmpty(m_Settings.DiscordBotToken))
+            {
+                Console.WriteLine("A settings.json file is found, but a Discord Token has not been given.");
+                return;
+            }
+
             DiscordClient discord = new DiscordClient(new DiscordConfiguration()
             {
                 Token = m_Settings.DiscordBotToken,
@@ -80,6 +86,7 @@ namespace MangaDexCommentNotifier
             {
                 await ScanForumsAsync(discord, new MangaDexForumService());
             }
+
         }
 
         /// <summary>
